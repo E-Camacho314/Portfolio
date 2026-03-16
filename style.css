@@ -1,0 +1,537 @@
+:root {
+    --bg-color: #0d110f; /* very dark greenish gray */
+    --text-color: #d4d0c4; /* aged paper / dim phosphor */
+    --accent-color: #728c69; /* muted tape label green */
+    --red-alert: #a63c3c; /* dull blood red */
+    --tape-color: #e6e4d5; /* yellowish masking tape */
+    --font-typewriter: 'Special Elite', monospace;
+    --font-terminal: 'VT323', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: crosshair;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-typewriter);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    padding: 2rem 1rem;
+}
+
+/* --- Vfx Overlays --- */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.1) 50%,
+        rgba(0,0,0,0.1)
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.noise {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.1"/%3E%3C/svg%3E');
+    pointer-events: none;
+    z-index: 99;
+    opacity: 0.15;
+}
+
+.crt-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: radial-gradient(circle, rgba(13,17,15,0) 60%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+    z-index: 98;
+}
+
+/* --- Layout Defaults --- */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    padding: 2.5rem;
+    border: 1px solid rgba(212, 208, 196, 0.15);
+    background: rgba(13, 17, 15, 0.85); /* Slightly transparent dark bg */
+    box-shadow: 0 0 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.document-header {
+    margin-bottom: 2rem;
+}
+
+.classification {
+    font-family: var(--font-terminal);
+    font-size: 1.8rem;
+    letter-spacing: 0.3em;
+    text-align: center;
+    border: 2px solid var(--text-color);
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    animation: flicker 5s infinite alternate;
+    text-shadow: 0 0 5px var(--text-color);
+    box-shadow: inset 0 0 10px rgba(212, 208, 196, 0.2);
+}
+
+.meta-data {
+    font-size: 1.1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 4px solid var(--accent-color);
+}
+
+.meta-data p {
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.meta-data strong {
+    font-family: var(--font-terminal);
+    font-size: 1.4rem;
+    color: var(--accent-color);
+    margin-right: 0.8rem;
+    min-width: 150px;
+}
+
+.typewriter-text {
+    color: #fff;
+    text-shadow: 0 0 3px rgba(255,255,255,0.5);
+}
+
+.separator {
+    border: none;
+    border-top: 1px dashed rgba(212, 208, 196, 0.4);
+    margin: 2.5rem 0;
+}
+
+/* --- Sections --- */
+.content-section {
+    margin-bottom: 4rem;
+}
+
+h2 {
+    font-family: var(--font-terminal);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 4px rgba(114, 140, 105, 0.5);
+}
+
+h2::before {
+    content: "> ";
+    animation: blink 2s infinite;
+}
+
+/* --- Redacted Text --- */
+.redacted {
+    background-color: var(--text-color);
+    color: var(--text-color);
+    padding: 0 4px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: help;
+}
+
+.redacted:hover {
+    background-color: rgba(212, 208, 196, 0.1); /* reveals slightly */
+    text-shadow: 0 0 2px var(--text-color);
+}
+
+.redacted::selection {
+    background: transparent;
+    color: transparent;
+}
+
+/* --- Case Files (Projects) --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.case-file {
+    border: 1px solid rgba(212, 208, 196, 0.2);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    position: relative;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.01),
+        rgba(255, 255, 255, 0.01) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    transition: all 0.3s ease;
+}
+
+.case-file:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: var(--accent-color);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.tape-label {
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    background: var(--tape-color);
+    color: #1a1a1a;
+    font-weight: bold;
+    padding: 4px 15px;
+    font-size: 0.9rem;
+    transform: rotate(-3deg);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid #ccc9b8;
+    background-image: linear-gradient(rgba(0,0,0,0.03) 50%, transparent 50%);
+    background-size: 100% 4px;
+}
+
+.case-file h3 {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgba(212, 208, 196, 0.2);
+    padding-bottom: 0.5rem;
+    color: #fff;
+}
+
+.case-file p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.85;
+}
+
+/* --- Buttons / Links --- */
+.btn {
+    display: inline-block;
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: var(--font-terminal);
+    font-size: 1.2rem;
+    border: 1px solid var(--text-color);
+    padding: 0.5rem 1rem;
+    transition: all 0.2s;
+    background: transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 10px rgba(212, 208, 196, 0.5);
+}
+
+/* --- Forms --- */
+.form-wrapper {
+    background: rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    border: 1px solid rgba(212, 208, 196, 0.1);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-family: var(--font-terminal);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    color: var(--accent-color);
+}
+
+input, textarea {
+    width: 100%;
+    background: rgba(13, 17, 15, 0.8);
+    border: 1px solid rgba(212, 208, 196, 0.3);
+    color: var(--text-color);
+    padding: 0.8rem;
+    font-family: var(--font-typewriter);
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s;
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(212, 208, 196, 0.3);
+    font-family: var(--font-typewriter);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 5px rgba(114, 140, 105, 0.3);
+}
+
+#recording-status {
+    margin-top: 1.5rem;
+    font-family: var(--font-terminal);
+    color: var(--red-alert);
+    font-size: 1.3rem;
+    padding: 1rem;
+    border: 1px dashed var(--red-alert);
+    text-align: center;
+}
+
+#recording-complete {
+    margin-top: 1.5rem;
+    font-family: var(--font-terminal);
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    padding: 1rem;
+    border: 1px solid var(--accent-color);
+    text-align: center;
+    text-shadow: 0 0 3px rgba(114, 140, 105, 0.5);
+}
+
+.hidden {
+    display: none;
+}
+
+.recording-dot {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: var(--red-alert);
+    border-radius: 50%;
+    margin-right: 10px;
+    animation: blink 1s infinite;
+    box-shadow: 0 0 8px var(--red-alert);
+}
+
+/* --- Footer --- */
+.document-footer {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.ascii-art {
+    font-family: monospace;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    animation: flicker 6s infinite alternate;
+}
+
+.document-footer p {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.small-text {
+    font-size: 0.9rem !important;
+    opacity: 0.6;
+    font-family: var(--font-terminal);
+    font-weight: normal !important;
+    margin-top: 1rem;
+}
+
+/* --- Animations --- */
+@keyframes flicker {
+    0% { opacity: 1; }
+    3% { opacity: 0.8; }
+    6% { opacity: 1; }
+    7% { opacity: 0.4; }
+    8% { opacity: 1; }
+    9% { opacity: 1; }
+    10% { opacity: 0.6; }
+    11% { opacity: 1; }
+    50% { opacity: 1; }
+    55% { opacity: 0.8; }
+    60% { opacity: 1; text-shadow: none; }
+    62% { text-shadow: 2px 0 0 rgba(255,0,0,0.5), -2px 0 0 rgba(0,255,0,0.5); }
+    65% { text-shadow: none; }
+    100% { opacity: 1; }
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+/* Selection */
+::selection {
+    background: rgba(114, 140, 105, 0.6);
+    color: #fff;
+}
+/* --- Navigation --- */
+.archive-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed rgba(212, 208, 196, 0.2);
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: var(--font-terminal);
+    font-size: 1.4rem;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    opacity: 1;
+    color: var(--accent-color);
+    text-shadow: 0 0 5px rgba(114, 140, 105, 0.5);
+}
+
+.nav-link.active::before {
+    content: "> ";
+}
+
+/* --- Resume / Dossier Specifics --- */
+.resume-item {
+    margin-bottom: 2.5rem;
+    border-left: 2px solid rgba(212, 208, 196, 0.1);
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.resume-item::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background: var(--text-color);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.resume-header h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin-right: 1rem;
+}
+
+.dates {
+    font-family: var(--font-terminal);
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+.resume-list {
+    list-style-type: square;
+    padding-left: 1.5rem;
+}
+
+.resume-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* --- Skills Grid --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-category {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1.5rem;
+    border: 1px solid rgba(212, 208, 196, 0.1);
+}
+
+.skill-category h3 {
+    font-family: var(--font-terminal);
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    border-bottom: 1px dashed rgba(212, 208, 196, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.tech-stack {
+    margin-top: -1rem;
+    margin-bottom: 1.5rem !important;
+    font-family: var(--font-terminal);
+    font-size: 1.1rem !important;
+    color: var(--accent-color);
+}
+
+/* --- Print Styles --- */
+@media print {
+    body {
+        background: #fff;
+        color: #000;
+        padding: 0;
+    }
+
+    .crt-overlay,
+    .scanlines,
+    .noise,
+    .archive-nav,
+    .btn {
+        display: none !important;
+    }
+
+    .container {
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    .meta-data strong,
+    .classification,
+    .dates {
+        color: #000;
+        text-shadow: none;
+    }
+
+    .classification {
+        border-color: #000;
+        animation: none;
+        box-shadow: none;
+    }
+
+    .redacted {
+        background-color: #000;
+        color: #000;
+    }
+}
