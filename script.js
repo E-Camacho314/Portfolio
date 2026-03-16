@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        // Gather the form data BEFORE disabling inputs
+        const formData = new FormData(form);
+
         // Hide submit button, show recording in progress
         submitBtn.style.display = 'none';
         recordingStatus.classList.remove('hidden');
@@ -50,8 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             input.disabled = true;
             input.style.opacity = '0.7';
         });
-
-        const formData = new FormData(form);
 
         try {
             const response = await fetch("https://formspree.io/f/xaqppaew", {
