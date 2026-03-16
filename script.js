@@ -57,7 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch("https://formspree.io/f/xaqppaew", {
                 method: "POST",
-                body: formData
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
             });
 
             if (response.ok) {
