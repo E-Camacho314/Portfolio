@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 recordingStatus.classList.add('hidden');
                 submitBtn.style.display = 'inline-block';
-                submitBtn.textContent = "[RECORDING FAILED - TRY AGAIN]";
+                submitBtn.textContent = "[RECORDING FAILED - TRY AGAIN]"; // Restored old terminology
                 inputs.forEach(input => {
                     input.disabled = false;
                     input.style.opacity = '1';
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Error submitting statement:", error);
             recordingStatus.classList.add('hidden');
             submitBtn.style.display = 'inline-block';
-            submitBtn.textContent = "[RECORDING FAILED - TRY AGAIN]";
+            submitBtn.textContent = "[RECORDING FAILED - TRY AGAIN]"; // Restored old terminology
             inputs.forEach(input => {
                 input.disabled = false;
                 input.style.opacity = '1';
