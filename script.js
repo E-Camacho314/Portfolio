@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const recordingComplete = document.getElementById('recording-complete');
     const submitBtn = form.querySelector('button[type="submit"]');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         // Hide submit button, show recording in progress
@@ -51,24 +51,44 @@ document.addEventListener('DOMContentLoaded', () => {
             input.style.opacity = '0.7';
         });
 
-        // Simulate tape recording time (4 seconds)
-        setTimeout(() => {
-            recordingStatus.classList.add('hidden');
-            recordingComplete.classList.remove('hidden');
-            
-            // Optionally, clear form after some time
-            /*
-            setTimeout(() => {
-                form.reset();
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch("https://formspree.io/f/xaqppaew", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Simulate tape recording time (minimum 2 seconds for effect)
+                setTimeout(() => {
+                    recordingStatus.classList.add('hidden');
+                    recordingComplete.classList.remove('hidden');
+                    
+                    form.reset();
+                }, 2000);
+            } else {
+                recordingStatus.classList.add('hidden');
+                submitBtn.style.display = 'inline-block';
+                submitBtn.textContent = "[RECORDING FAILED - TRY AGAIN]";
                 inputs.forEach(input => {
                     input.disabled = false;
                     input.style.opacity = '1';
                 });
-                submitBtn.style.display = 'inline-block';
-                recordingComplete.classList.add('hidden');
-            }, 5000);
-            */
-        }, 4000);
+            }
+        } catch (error) {
+            console.error("Error submitting statement:", error);
+            recordingStatus.classList.add('hidden');
+            submitBtn.style.display = 'inline-block';
+            submitBtn.textContent = "[RECORDING FAILED - TRY AGAIN]";
+            inputs.forEach(input => {
+                input.disabled = false;
+                input.style.opacity = '1';
+            });
+        }
     });
 
     // 4. Glitch effect on hover for Case Files
