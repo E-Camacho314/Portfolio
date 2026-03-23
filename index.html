@@ -12,6 +12,24 @@
 </head>
 
 <body>
+    <!-- Casette Preloader -->
+    <div id="cassette-preloader" class="cassette-preloader">
+        <div class="preloader-content">
+            <pre class="ascii-cassette">
+  _____________
+ /             \
+| [O]       [O] |
+|   |-------|   |
+|___|_______|___|
+            </pre>
+            <div class="boot-text">
+                <p class="boot-line" style="animation-delay: 0.5s">> MOUNTING TAPE_0120...</p>
+                <p class="boot-line" style="animation-delay: 1.5s">> SYNCING PLAYHEAD...</p>
+                <p class="boot-line blink-rec" style="animation-delay: 2.5s">> [ REC</p>
+            </div>
+        </div>
+    </div>
+
     <div class="crt-overlay"></div>
     <div class="scanlines"></div>
     <div class="noise"></div>
@@ -25,7 +43,7 @@
             </nav>
             <h1 class="classification">CLASSIFIED // EYES ONLY</h1>
             <div class="meta-data">
-                <p><strong>STATEMENT OF:</strong> <span class="typewriter-text" data-text="ERIK CAMACHO"></span><span
+                <p><strong>STATEMENT OF:</strong> <span class="morph-cassette">[📼]</span><span class="typewriter-text" data-text="ERIK CAMACHO"></span><span
                         class="cursor">█</span></p>
                 <p><strong>REGARDING:</strong> Full-Stack Development / Web Archives</p>
                 <p><strong>DATE RECORDED:</strong> <span id="current-date"></span></p>
@@ -70,6 +88,12 @@
                     <h3>Lyra Dating App</h3>
                     <p>A full-stack web and mobile application designed to cultivate connections, featuring encrypted
                         databases.</p>
+                    <a href="projects.html" class="btn">[ACCESS FILE]</a>
+                </article>
+                <article class="case-file">
+                    <div class="tape-label">Tape #ROULETTE</div>
+                    <h3>GameRoulette</h3>
+                    <p>An iOS application guiding users through their Steam backlogs using smart prioritization algorithms and MapKit data.</p>
                     <a href="projects.html" class="btn">[ACCESS FILE]</a>
                 </article>
             </div>

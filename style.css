@@ -183,6 +183,31 @@ h2::before {
     transition: all 0.3s ease;
 }
 
+/* --- VHS Glitch on Hover --- */
+.case-file::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(212, 208, 196, 0.15) 50%, transparent 100%);
+    background-size: 100% 25%;
+    background-repeat: no-repeat;
+    background-position: 0 -25%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+.case-file:hover::after {
+    animation: vhs-scan 1.5s linear infinite;
+    opacity: 1;
+}
+@keyframes vhs-scan {
+    0% { background-position: 0 -25%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { background-position: 0 125%; opacity: 0; }
+}
+
 .case-file:hover {
     background-color: rgba(255, 255, 255, 0.03);
     border-color: var(--accent-color);
@@ -488,6 +513,136 @@ input:focus, textarea:focus {
     font-family: var(--font-terminal);
     font-size: 1.1rem !important;
     color: var(--accent-color);
+}
+
+/* --- Global Tape Status Scroll --- */
+.tape-scroll-indicator {
+    position: fixed;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-terminal);
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2rem;
+    pointer-events: none;
+    z-index: 110;
+    opacity: 0.6;
+}
+
+/* --- Preloader --- */
+.cassette-preloader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: var(--bg-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded .cassette-preloader {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader-content {
+    text-align: center;
+    color: var(--text-color);
+    font-family: var(--font-terminal);
+}
+
+.ascii-cassette {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    animation: flicker 3s infinite alternate;
+}
+
+.boot-line {
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: bootType 0.1s forwards;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes bootType {
+    to { opacity: 1; }
+}
+
+.blink-rec {
+    color: var(--red-alert);
+}
+.blink-rec::after {
+    content: " ● ]";
+    animation: blink 1s infinite alternate;
+}
+
+/* Morph Cassette in Name */
+.morph-cassette {
+    display: inline-block;
+    color: var(--accent-color);
+    margin-right: 15px;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+body.loaded .morph-cassette {
+    animation: glitchHide 1s forwards;
+    animation-delay: 0.2s; 
+}
+
+@keyframes glitchHide {
+    0% { transform: scale(1) skewX(0deg); opacity: 1; }
+    20% { transform: scale(1.2) skewX(20deg); opacity: 1; color: var(--text-color); }
+    40% { transform: scale(0.8) skewX(-20deg); opacity: 0.8; color: var(--red-alert); text-shadow: 2px 0 0 rgba(255,0,0,0.5); }
+    60% { transform: scale(1.5) skewX(40deg); opacity: 0.5; filter: blur(2px); }
+    100% { transform: scale(0); opacity: 0; display: none; margin-right: 0;}
+}
+
+/* --- Glitch Cursor Trail --- */
+.cursor-trail-glitch {
+    position: fixed;
+    pointer-events: none;
+    color: var(--red-alert);
+    font-family: var(--font-terminal);
+    font-size: 1.2rem;
+    z-index: 9999;
+    opacity: 0.8;
+    transform: translate(-50%, -50%);
+    animation: glitchTrail 0.8s steps(4) forwards;
+}
+
+@keyframes glitchTrail {
+    0% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.2) rotate(10deg); color: var(--accent-color); text-shadow: 2px 0 0 rgba(255,0,0,0.5); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+}
+
+/* --- Background Random Symbols --- */
+.bg-symbol {
+    position: absolute;
+    color: var(--text-color);
+    font-family: var(--font-terminal);
+    font-size: 2rem;
+    opacity: 0;
+    z-index: 1; /* Below the .container */
+    pointer-events: none;
+    animation: bgSymbolFade 4s ease-in-out forwards;
+    filter: blur(1px);
+}
+
+@keyframes bgSymbolFade {
+    0% { opacity: 0; transform: scale(0.9); }
+    10% { opacity: 0.3; }
+    50% { opacity: 0.6; filter: blur(0px); text-shadow: 0 0 10px var(--accent-color); }
+    90% { opacity: 0.3; }
+    100% { opacity: 0; transform: scale(1.1); }
 }
 
 /* --- Print Styles --- */
