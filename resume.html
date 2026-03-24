@@ -1,144 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Archives | Dossier (Resume)</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Curriculum Vitae | Erik Camacho</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="crt-overlay"></div>
-    <div class="scanlines"></div>
-    <div class="noise"></div>
+    <!-- Sparkles container -->
+    <div id="sparkle-container"></div>
+    
+    <nav class="elegant-nav fade-in-up">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <span class="separator">✧</span>
+            <a href="projects.html">Works</a>
+            <span class="separator">✧</span>
+            <a href="resume.html">Curriculum Vitae</a>
+        </div>
+    </nav>
 
-    <main class="container">
-        <header class="document-header">
-            <nav class="archive-nav">
-                <a href="index.html" class="nav-link">[ARCHIVES // HOME]</a>
-                <a href="projects.html" class="nav-link">[CASE FILES // PROJECTS]</a>
-                <a href="resume.html" class="nav-link active">[DOSSIER // RESUME]</a>
-            </nav>
-            <h1 class="classification">PERSONNEL RECORD // CONFIDENTIAL</h1>
-            <div class="meta-data">
-                <p><strong>SUBJECT:</strong> ERIK CAMACHO</p>
-                <p><strong>DESIGNATION:</strong> Software Developer</p>
-            </div>
-            <hr class="separator">
-        </header>
-
-        <section class="content-section" id="dossier-details">
-            <h2>[EDUCATION // ACADEMIC PROFILE]</h2>
-            <div class="resume-item">
-                <div class="resume-header">
-                    <h3>Arizona State University</h3>
-                    <span class="dates">Tempe, AZ</span>
-                </div>
-                <p
-                    style="color: var(--accent-color); font-family: var(--font-terminal); font-size: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">
-                    Bachelors of Science - Computer Science | Minor - Political Science</p>
-                <p style="margin-bottom: 0.5rem;"><strong>GPA:</strong> 3.89</p>
-                <p><strong>ACTIVITIES:</strong> Software Developers Association, El Concilio, Adventurers Wanted Inc.,
-                    Album Listening Club, The Writers Guild, The Book Club at ASU, Video Game Completionist Club</p>
-            </div>
-
-            <h2>[WORK HISTORY]</h2>
-            <div class="resume-item">
-                <div class="resume-header">
-                    <h3>Software Developer Intern @ Endless Moments LLC</h3>
-                    <span class="dates">Sep 2025 - Present</span>
-                </div>
-                <ul class="resume-list">
-                    <li>Designed and implemented an intuitive, safety-first user interface with integrated ID/photo
-                        verification and real-time moderation.</li>
-                    <li>Built interactive front-end functionality for a dating application, including usability
-                        enhancements such as light mode and streamlined navigation.</li>
-                    <li>Developed responsive web apps optimized for speed, accessibility, and secure communication and
-                        storage of sensitive data.</li>
-                    <li>Integrated robust database of user data with encryption for sensitive information and hashed
-                        password authentication.</li>
-                </ul>
-            </div>
-
-            <div class="resume-item">
-                <div class="resume-header">
-                    <h3>Office Aide Lead @ Office of New Student Experiences</h3>
-                    <span class="dates">May 2025 - Present</span>
-                </div>
-                <ul class="resume-list">
-                    <li>Conducted interviews and evaluated dozens of candidates to fill key student positions, ensuring
-                        high-quality hires.</li>
-                    <li>Designed weekly schedules for a team of 10 Office Aides, balancing individual availability with
-                        operational needs.</li>
-                    <li>Served as a liaison between staff and students, resolving complex issues related to Enrollment
-                        Deposits and Academic Orientation Sessions.</li>
-                    <li>Led and supervised a team of 10 Office Aides, providing guidance, task delegation, and support
-                        to ensure smooth daily operations.</li>
-                </ul>
-            </div>
-
-            <div class="resume-item">
-                <div class="resume-header">
-                    <h3>Office Aide @ Office of New Student Experiences</h3>
-                    <span class="dates">May 2024 - May 2025</span>
-                </div>
-                <ul class="resume-list">
-                    <li>Responded to thousands of student inquiries via phone and email regarding financial aid,
-                        technical support, and academic procedures.</li>
-                    <li>Managed and enhanced Sunny Chatbot features, improving automated support for over 15,000
-                        domestic and international students.</li>
-                    <li>Coordinated logistics for university-wide orientation events, including preparing flyers,
-                        paperwork, and event materials for thousands of incoming students.</li>
-                </ul>
+    <main>
+        <section class="hero-section" style="min-height: 30vh; border-bottom: none; padding-bottom: 2rem;">
+            <div class="hero-content fade-in-up" data-delay="0.1">
+                <p class="pre-title">a formal</p>
+                <h1 class="main-title" style="font-size: 4rem; margin-bottom: 0;">Curriculum Vitae</h1>
             </div>
         </section>
 
-        <section class="content-section" id="skills">
-            <h2>[ACQUIRED SKILLS // CERTIFICATIONS]</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <p>C++, C, Java, HTML, Scheme, Prolog, Python, Javascript, JavaFX, React.js, SQL, MIPS, x86</p>
+        <section class="cv-section fade-in-up" data-delay="0.2">
+            <div class="cv-container">
+                
+                <div class="cv-category">
+                    <h2 class="cv-category-title">Academic Profile</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h3 class="cv-title">Arizona State University</h3>
+                            <span class="cv-dates">Tempe, AZ</span>
+                        </div>
+                        <div class="cv-subtitle">Bachelors of Science - Computer Science | Minor - Political Science</div>
+                        <p style="margin-bottom: 0.5rem; color: var(--text-muted);"><strong>GPA:</strong> 3.89</p>
+                        <p style="color: var(--text-muted);"><strong>Activities:</strong> Software Developers Association, El Concilio, Adventurers Wanted Inc., Album Listening Club, The Writers Guild, The Book Club at ASU, Video Game Completionist Club</p>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Tools</h3>
-                    <p>Figma, Adobe Suite, Salesforce, Git, Microsoft Office, Google Drive, Chatbots</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Certifications</h3>
-                    <p>CITI Program - IRB - Social and Behavioral Research (Group 2)</p>
-                </div>
-            </div>
 
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="#" class="btn" onclick="window.print(); return false;">[PRINT RECORD]</a>
+                <div class="cv-category">
+                    <h2 class="cv-category-title">Professional Experience</h2>
+
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h3 class="cv-title">Software Developer Intern</h3>
+                            <span class="cv-dates">Sep 2025 - Present</span>
+                        </div>
+                        <div class="cv-subtitle">Endless Moments LLC</div>
+                        <ul class="cv-list">
+                            <li>Designed and implemented an intuitive, safety-first user interface with integrated ID/photo verification and real-time moderation.</li>
+                            <li>Built interactive front-end functionality for a dating application, including usability enhancements such as light mode and streamlined navigation.</li>
+                            <li>Developed responsive web apps optimized for speed, accessibility, and secure communication and storage of sensitive data.</li>
+                            <li>Integrated robust database of user data with encryption for sensitive information and hashed password authentication.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h3 class="cv-title">Office Aide Lead</h3>
+                            <span class="cv-dates">May 2025 - Present</span>
+                        </div>
+                        <div class="cv-subtitle">Office of New Student Experiences</div>
+                        <ul class="cv-list">
+                            <li>Conducted interviews and evaluated dozens of candidates to fill key student positions, ensuring high-quality hires.</li>
+                            <li>Designed weekly schedules for a team of 10 Office Aides, balancing individual availability with operational needs.</li>
+                            <li>Served as a liaison between staff and students, resolving complex issues related to Enrollment Deposits and Academic Orientation Sessions.</li>
+                            <li>Led and supervised a team of 10 Office Aides, providing guidance, task delegation, and support to ensure smooth daily operations.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cv-item">
+                        <div class="cv-header">
+                            <h3 class="cv-title">Office Aide</h3>
+                            <span class="cv-dates">May 2024 - May 2025</span>
+                        </div>
+                        <div class="cv-subtitle">Office of New Student Experiences</div>
+                        <ul class="cv-list">
+                            <li>Responded to thousands of student inquiries via phone and email regarding financial aid, technical support, and academic procedures.</li>
+                            <li>Managed and enhanced Sunny Chatbot features, improving automated support for over 15,000 domestic and international students.</li>
+                            <li>Coordinated logistics for university-wide orientation events, including preparing flyers, paperwork, and event materials for thousands of incoming students.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cv-category">
+                    <h2 class="cv-category-title">Skills & Certifications</h2>
+                    <div class="skills-wrapper">
+                        <div class="skill-group">
+                            <h3>Languages</h3>
+                            <p>C++, C, Java, HTML, Scheme, Prolog, Python, Javascript, JavaFX, React.js, SQL, MIPS, x86</p>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Tools</h3>
+                            <p>Figma, Adobe Suite, Salesforce, Git, Microsoft Office, Google Drive, Chatbots</p>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Certifications</h3>
+                            <p>CITI Program - IRB - Social and Behavioral Research (Group 2)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 4rem;">
+                    <button class="submit-btn" onclick="window.print(); return false;">Print Curriculum Vitae</button>
+                </div>
             </div>
         </section>
 
-        <footer class="document-footer">
-            <hr class="separator">
-            <pre class="ascii-art">
-     __________________________
-    | ........................ |
-    | |  [ARCHIVAL TAPES]    | |
-    | |   STATEMENT #0120    | |
-    | |                      | |
-    | |______________________| |
-    |    __              __    |
-    |   /  \            /  \   |
-    |  | () |__________| () |  |
-    |___\__/____________\__/__ |
-            </pre>
-            <p>RECORD ENDS.</p>
-            <p class="small-text">For internal review only.</p>
-        </footer>
     </main>
+
+    <footer class="elegant-footer fade-in-up">
+        <p>✧ Made with love and a warm cup of coffee ✧</p>
+        <p class="copyright">© 2026 Erik Camacho.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>

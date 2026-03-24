@@ -1,151 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Archives | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Elegance & Code | Erik Camacho</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Casette Preloader -->
-    <div id="cassette-preloader" class="cassette-preloader">
-        <div class="preloader-content">
-            <pre class="ascii-cassette">
-  _____________
- /             \
-| [O]       [O] |
-|   |-------|   |
-|___|_______|___|
-            </pre>
-            <div class="boot-text">
-                <p class="boot-line" style="animation-delay: 0.5s">> MOUNTING TAPE_0120...</p>
-                <p class="boot-line" style="animation-delay: 1.5s">> SYNCING PLAYHEAD...</p>
-                <p class="boot-line blink-rec" style="animation-delay: 2.5s">> [ REC</p>
-            </div>
+    <!-- Music Preloader -->
+    <div id="music-preloader" class="music-preloader">
+        <div class="staves">
+            <div class="staff-line"></div>
+            <div class="staff-line"></div>
+            <div class="staff-line"></div>
+            <div class="staff-line"></div>
+            <div class="staff-line"></div>
         </div>
+        <div class="notes-container">
+            <span class="music-note" style="--delay: 0s; --y: -10px;">♪</span>
+            <span class="music-note" style="--delay: 0.2s; --y: 10px;">♫</span>
+            <span class="music-note" style="--delay: 0.4s; --y: -5px;">♩</span>
+            <span class="music-note" style="--delay: 0.1s; --y: 15px;">♬</span>
+            <span class="music-note" style="--delay: 0.5s; --y: -15px;">♭</span>
+            <span class="music-note" style="--delay: 0.3s; --y: 5px;">♪</span>
+        </div>
+        <div class="preloader-text">Composing...</div>
     </div>
 
-    <div class="crt-overlay"></div>
-    <div class="scanlines"></div>
-    <div class="noise"></div>
+    <!-- Sparkles container -->
+    <div id="sparkle-container"></div>
+    
+    <nav class="elegant-nav fade-in-up">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <span class="separator">✧</span>
+            <a href="projects.html">Works</a>
+            <span class="separator">✧</span>
+            <a href="resume.html">Curriculum Vitae</a>
+        </div>
+    </nav>
 
-    <main class="container">
-        <header class="document-header">
-            <nav class="archive-nav">
-                <a href="index.html" class="nav-link active">[ARCHIVES // HOME]</a>
-                <a href="projects.html" class="nav-link">[CASE FILES // PROJECTS]</a>
-                <a href="resume.html" class="nav-link">[DOSSIER // RESUME]</a>
-            </nav>
-            <h1 class="classification">CLASSIFIED // EYES ONLY</h1>
-            <div class="meta-data">
-                <p><strong>STATEMENT OF:</strong> <span class="morph-cassette">[📼]</span><span class="typewriter-text" data-text="ERIK CAMACHO"></span><span
-                        class="cursor">█</span></p>
-                <p><strong>REGARDING:</strong> Full-Stack Development / Web Archives</p>
-                <p><strong>DATE RECORDED:</strong> <span id="current-date"></span></p>
-            </div>
-            <hr class="separator">
-        </header>
-
-        <section class="content-section" id="subject-details">
-            <h2>[SUBJECT DETAILS]</h2>
-            <div class="text-block">
-                <p>The subject is a highly skilled Software Developer holding an academic background in Computer Science
-                    from Arizona State University <span class="redacted">(with a minor in Political Science)</span>.
-                    He specializes in full-stack development, database architecture, and secure communications.
-                </p>
-                <br>
-                <p>He is currently contained at Endless Moments LLC, constructing safety-first user interfaces and ASU
-                    Office of New Student Experience curating databases and orientation registrations.
-                    Approach with caution. Offer intriguing projects to appease. The subject was last seen operating out
-                    of <span class="redacted">Tempe, AZ</span>.</p>
-            </div>
-        </section>
-
-        <section class="content-section" id="case-files">
-            <h2>[CASE FILES // FEATURED PROJECTS]</h2>
-            <div class="grid-container">
-                <article class="case-file">
-                    <div class="tape-label">Tape #RCSSF</div>
-                    <h3>Random Computer Science Student Forecast</h3>
-                    <p>A political forecasting website utilizing calculated probabilities and demographic biases to run
-                        election simulations.</p>
-                    <a href="projects.html" class="btn">[ACCESS FILE]</a>
-                </article>
-                <article class="case-file">
-                    <div class="tape-label">Tape #HELP</div>
-                    <h3>Class Help System</h3>
-                    <p>A secure, database-driven web app fostering communication and resource sharing among instructors
-                        and students.</p>
-                    <a href="projects.html" class="btn">[ACCESS FILE]</a>
-                </article>
-                <article class="case-file">
-                    <div class="tape-label">Tape #LYRA</div>
-                    <h3>Lyra Dating App</h3>
-                    <p>A full-stack web and mobile application designed to cultivate connections, featuring encrypted
-                        databases.</p>
-                    <a href="projects.html" class="btn">[ACCESS FILE]</a>
-                </article>
-                <article class="case-file">
-                    <div class="tape-label">Tape #ROULETTE</div>
-                    <h3>GameRoulette</h3>
-                    <p>An iOS application guiding users through their Steam backlogs using smart prioritization algorithms and MapKit data.</p>
-                    <a href="projects.html" class="btn">[ACCESS FILE]</a>
-                </article>
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <p class="pre-title fade-in-up" data-delay="1.2">a digital vignette</p>
+                <h1 class="main-title music-morph-container">
+                    <div class="morph-note">𝄞</div>
+                    <div class="morph-text">
+                        <span>E</span><span>r</span><span>i</span><span>k</span><br>
+                        <em><span>C</span><span>a</span><span>m</span><span>a</span><span>c</span><span>h</span><span>o</span></em>
+                    </div>
+                </h1>
+                <p class="hero-desc fade-in-up" data-delay="2.5">Crafting romantic, cinematic digital experiences that linger like a soft jazz melody.</p>
+                <div class="hero-ornament fade-in-up" data-delay="3.0">
+                    <div class="vinyl-record">
+                        <div class="vinyl-center"></div>
+                        <div class="vinyl-label">
+                            <span>Op. 1</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="content-section" id="contact-archive">
-            <h2>[LODGE A STATEMENT // CONTACT]</h2>
-            <div class="form-wrapper">
-                <form id="contact-form">
-                    <div class="input-group">
-                        <label for="name">NAME (IF KNOWN):</label>
-                        <input type="text" id="name" name="name" required placeholder="John Doe">
+        <section id="about" class="about-section fade-in-up" data-delay="0.1">
+            <div class="about-container">
+                <div class="about-text-content">
+                    <h2 class="section-title">The Prelude</h2>
+                    <p class="drop-cap">W</p>
+                    <p class="letter-text">elcome to my corner of the web. I am a Software Developer with a background in Computer Science from Arizona State University. I specialize in full-stack development, weaving together database architectures and secure communications with the care of a composer writing a symphony.</p>
+                    <p class="letter-text">Currently, I am crafting safety-first user interfaces at Endless Moments LLC, and carefully curating systems for the ASU Office of New Student Experience. Like a carefully composed piece of music, every line of code I write is intentional, designed to evoke wonder and stillness.</p>
+                    <div class="signature">With warmth, <br><span class="script-font">Erik</span></div>
+                </div>
+                <div class="about-visual">
+                    <div class="polaroid">
+                        <div class="polaroid-img"></div>
+                        <div class="polaroid-caption">Autumn in Tempe</div>
                     </div>
-                    <div class="input-group">
-                        <label for="email">CONTACT FREQUENCY (EMAIL):</label>
-                        <input type="email" id="email" name="email" required placeholder="contact@example.com">
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <h2 class="section-title fade-in-up">Featured Compositions</h2>
+            <div class="projects-grid">
+                
+                <article class="sheet-music-card fade-in-up" data-delay="0.1" onclick="window.location.href='projects.html'">
+                    <div class="card-ornament"></div>
+                    <div class="card-content">
+                        <span class="track-number">No. 1</span>
+                        <h3>RCSSF</h3>
+                        <p>A political forecasting website utilizing calculated probabilities to run beautiful election simulations.</p>
+                        <div class="tags">
+                            <span>React.js</span> • <span>Data Analysis</span>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="message">STATEMENT:</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Begin your statement..."></textarea>
+                </article>
+
+                <article class="sheet-music-card fade-in-up" data-delay="0.2" onclick="window.location.href='projects.html'">
+                    <div class="card-ornament"></div>
+                    <div class="card-content">
+                        <span class="track-number">No. 2</span>
+                        <h3>Class Help System</h3>
+                        <p>A secure, database-driven web app fostering communication, securely managing encrypted data.</p>
+                        <div class="tags">
+                            <span>SQL</span> • <span>Cryptography</span>
+                        </div>
                     </div>
-                    <button type="submit" class="btn">[RECORD STATEMENT]</button>
+                </article>
+
+                <article class="sheet-music-card fade-in-up" data-delay="0.3" onclick="window.location.href='projects.html'">
+                    <div class="card-ornament"></div>
+                    <div class="card-content">
+                        <span class="track-number">No. 3</span>
+                        <h3>Lyra Dating App</h3>
+                        <p>A full-stack application designed to cultivate connections, featuring a warmly polished intuitive interface.</p>
+                        <div class="tags">
+                            <span>React</span> • <span>Swift</span> • <span>Python</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="sheet-music-card fade-in-up" data-delay="0.4" onclick="window.location.href='projects.html'">
+                    <div class="card-ornament"></div>
+                    <div class="card-content">
+                        <span class="track-number">No. 4</span>
+                        <h3>GameRoulette</h3>
+                        <p>An iOS application utilizing Steam APIs to prioritize the user's backlog and thoughtfully suggest their next adventure.</p>
+                        <div class="tags">
+                            <span>Swift</span> • <span>MVVM</span> • <span>MapKit</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            <div style="text-align: center; margin-top: 3rem;" class="fade-in-up">
+                <a href="projects.html" class="submit-btn" style="text-decoration: none; display: inline-block;">View Full Discography</a>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section fade-in-up">
+            <div class="rsvp-card">
+                <h2 class="rsvp-title">Drop a Note</h2>
+                <p class="rsvp-subtitle">I would absolutely love to hear from you.</p>
+                <form class="elegant-form" id="contact-form">
+                    <div class="input-row">
+                        <input type="text" name="name" placeholder="Your lovely name" required>
+                    </div>
+                    <div class="input-row">
+                        <input type="email" name="email" placeholder="Your email address" required>
+                    </div>
+                    <div class="input-row">
+                        <textarea name="message" placeholder="Pen your thoughts here..." rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Letter</button>
+                    <div class="form-feedback"></div>
                 </form>
             </div>
-            <div id="recording-status" class="hidden">
-                <span class="recording-dot"></span> [RECORDING IN PROGRESS...]
-            </div>
-            <div id="recording-complete" class="hidden">
-                <p>STATEMENT RECORDED. CASSETTE STORED.</p>
-            </div>
         </section>
-
-        <footer class="document-footer">
-            <hr class="separator">
-            <pre class="ascii-art">
-     __________________________
-    | ........................ |
-    | |  [ARCHIVAL TAPES]    | |
-    | |   STATEMENT #0120    | |
-    | |                      | |
-    | |______________________| |
-    |    __              __    |
-    |   /  \            /  \   |
-    |  | () |__________| () |  |
-    |___\__/____________\__/__ |
-            </pre>
-            <p>STATEMENT ENDS.</p>
-            <p class="small-text">Do not distribute outside of archives.</p>
-        </footer>
     </main>
+
+    <footer class="elegant-footer fade-in-up">
+        <p>✧ Made with love and a warm cup of coffee ✧</p>
+        <p class="copyright">© 2026 Erik Camacho.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>
